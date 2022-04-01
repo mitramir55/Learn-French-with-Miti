@@ -4,11 +4,9 @@
 {% block content %}
     <p> Choose the topic:</p>
 
-    {% for sheet_name, df in sheets_dict.items() %}
     <form action="#" method="post" enctype="multipart/form-data">
-        <input type="submit" name="submit" value="{{sheet_name}}"  class="btn btn-light">
+        <input type="submit" name="submit" value="This"  class="btn btn-light">
     </form>
     <br>
-    {% endfor %}
 
 {% endblock %}
