@@ -11323,7 +11323,6 @@ html {
   background-color: rgba(0, 0, 0, 0.7);
 }
 .navbar-custom .navbar-brand {
-  text-transform: uppercase;
   font-size: 1rem;
   letter-spacing: 0.1rem;
   font-weight: 700;
@@ -11447,8 +11446,9 @@ header.masthead .bg-circle-4 {
 }
 
 .page-content {
-  width: calc(100% - 17rem);
-  margin-left: 17rem;
+  width: 70%;
+  align-items: center;
+  align-self: center;
   transition: all 0.4s;
 }
 
@@ -11501,3 +11501,7 @@ header.masthead .bg-circle-4 {
 .text-gray {
   color: #aaa;
 }
+.inlinebutton {
+  margin: 10px;
+}
+
