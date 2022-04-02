@@ -18,7 +18,7 @@
   
      <form action="#" method="post" enctype="multipart/form-data" style="margin-bottom: 160px;">
         {% for sheet_name, df in sheets_dict.items() %}
-        <input type="submit" style="background-color: salmon;" name="submit" value="{{sheet_name}}" topic="yes" class="btn btn-light inlinebutton">
+        <input type="submit" style="background-color: salmon;" name="submit" value="{{sheet_name}}" data-foo="yes" class="btn btn-light inlinebutton">
         {% endfor %}
     </form>
 </div>

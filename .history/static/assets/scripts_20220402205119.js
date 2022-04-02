@@ -1,4 +1,17 @@
 let btns = document.querySelectorAll("[topic]");
+/*
+btn.addEventListener('hover', function () {
+  btn.style.backgroundColor = 'salmon';
+  btn.style.color = 'white';
+});
+btn.addEventListener('mouseover', function(){
+  btn.style.backgroundColor = 'rgb(170,240,209)';
+});
+btn.addEventListener('mouseout', function (){
+  btn.style.backgroundColor = 'gray';
+});
+*/
+
 
 for (let i = 0; i < btns.length; i++) {
   btns[i].addEventListener('mouseover', function(){
