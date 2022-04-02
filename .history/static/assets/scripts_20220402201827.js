@@ -1,4 +1,4 @@
-let btns = document.querySelectorAll("input[type]");
+let btns = document.getElementsByClassName(".btn btn-light inlinebutton");
 /*
 btn.addEventListener('hover', function () {
   btn.style.backgroundColor = 'salmon';
@@ -10,19 +10,26 @@ btn.addEventListener('mouseover', function(){
 btn.addEventListener('mouseout', function (){
   btn.style.backgroundColor = 'gray';
 });
+
+
+btns.forEach(btn => {
+
+});
 */
 
 
-for (let i = 0; i < btns.length; i++) {
-  btns[i].addEventListener('mouseover', function(){
-    btns[i].style.backgroundColor = 'gray';
-  });
-  btns[i].addEventListener('hover', function () {
-    btns[i].style.backgroundColor = 'gray';
-  });
+// adding the event listener by looping
 
-  btns[i].addEventListener('mouseout', function (){
+for (let i = 0; i < btns.length; i++) {
+  //console.log(elements[i].innerHTML);
+  btns[i].addEventListener('hover', function () {
     btns[i].style.backgroundColor = 'salmon';
-    });
-    
+    btns[i].style.color = 'white';
+  });
+  btns.addEventListener('mouseout', function (){
+    btns.style.backgroundColor = 'gray';
+  });
+  btns.addEventListener('mouseover', function(){
+    btns.style.backgroundColor = 'rgb(170,240,209)';
+  });
 }

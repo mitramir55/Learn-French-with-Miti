@@ -15,14 +15,12 @@ btn.addEventListener('mouseout', function (){
 
 for (let i = 0; i < btns.length; i++) {
   btns[i].addEventListener('mouseover', function(){
-    btns[i].style.backgroundColor = 'gray';
-  });
-  btns[i].addEventListener('hover', function () {
-    btns[i].style.backgroundColor = 'gray';
+    btns[i].style.backgroundColor = 'rgb(170,240,209)';
   });
 
-  btns[i].addEventListener('mouseout', function (){
-    btns[i].style.backgroundColor = 'salmon';
+    btns[i].addEventListener('mouseout', function (){
+      btns[i].style.backgroundColor = 'white';
     });
     
+  });
 }
