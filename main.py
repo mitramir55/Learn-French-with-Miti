@@ -51,7 +51,7 @@ def test(**kwargs):
   
     if request.method=='POST': 
         df = pd.read_excel(VOCAB_FILE, sheet_name=session['sheet_name'])
-        df.dropna(inplace=True)
+        df.dropna(subset=['word', 'le ou la'], inplace=True)
 
         articles = df.loc[:, 'le ou la'].values
         words = df.loc[:, 'word'].values
@@ -74,7 +74,7 @@ def test(**kwargs):
     else: 
         df = pd.read_excel(VOCAB_FILE, sheet_name=session['sheet_name'])
 
-        df.dropna(inplace=True)
+        df.dropna(subset=['word', 'le ou la'], inplace=True)
         words = df.loc[:, 'word']
         return render_template('test.html', sheet_name=session['sheet_name'], words=words,
         enumerate=enumerate, mode='test')
