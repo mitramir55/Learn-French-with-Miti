@@ -22,7 +22,6 @@
         
         <!-- custom css and js-->
         <link rel="stylesheet" href="static\assets\style.css" />
-        <script src="static\assets\scripts.js"></script>
         <link rel="icon" type="image/x-icon" href="static\assets\french.ico" />
         
         
@@ -53,8 +52,9 @@
         </div>
     </nav>
 
-      <!--This is the error flash-->
+      
           <div class="container" style="margin: 6%;" >
+            <!--This is the error flash-->
                 {% for message in get_flashed_messages() %}
 
                     <div class="alert alert-warning">
@@ -74,6 +74,7 @@
                     {% endblock %}
                 </div>
             </div>
+            <script src="static\assets\scripts.js"></script>
 
     </body>
 </html>

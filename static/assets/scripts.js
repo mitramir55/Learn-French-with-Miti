@@ -1,25 +1,14 @@
+let btn = document.getElementById('btn');
 
-// for the sidebar
-$(function() {
-  // Sidebar toggle behavior
-  $('#sidebarCollapse').on('click', function() {
-    $('#sidebar, #content').toggleClass('active');
-  });
+btn.addEventListener('hover', function onClick() {
+  btn.style.backgroundColor = 'salmon';
+  btn.style.color = 'white';
 });
 
-var coll = document.getElementsByClassName("collapsible");
-var i;
+btn.addEventListener('mouseover', function(){
+  btn.style.backgroundColor = 'rgb(170,240,209)';
+});
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content_ = this.nextElementSibling;
-    if (content_.style.display === "block") {
-      content_.style.display = "none";
-    } else {
-      content_.style.display = "block";
-    }
-  });
-}
-
-console.log(d3);
+btn.addEventListener('mouseout', function (){
+  btn.style.backgroundColor = 'gray';
+});

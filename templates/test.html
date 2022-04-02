@@ -24,9 +24,8 @@
             {% endfor %}
             </tbody>
         </table>
-        <button type="submit" name="submit" value="Submit"  class="btn btn-light">Submit</button>
+        <button type="submit" id="btn" name="submit" value="Submit"  class="btn btn-light">Submit</button>
         </form>
-
     {% elif mode=='check' %}
         <table class="table table-bordered">
             <thead>
@@ -40,7 +39,7 @@
                 {% set color = 'rgb(182, 88, 88)' %}
                 {% for i in range(len(words)) %}
                     {% if i in correct_answers_idx:%}
-                        {% set color='darkseagreen' %}
+                        {% set color='rgb(170,240,209)' %}
                     {% endif %}
                     <tr style="background-color: {{color}};">
                         <td>{{user_input[i]}}</td>
@@ -53,11 +52,6 @@
         </table>
 
     {% endif %}
-
-
-
-
-
 
 
 
