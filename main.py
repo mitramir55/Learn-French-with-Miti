@@ -11,6 +11,8 @@ from charset_normalizer import from_path
 from itertools import chain
 from prompt_toolkit import HTML 
 from werkzeug.utils import secure_filename
+from bs4 import BeautifulSoup
+import requests
 
 
 
@@ -22,6 +24,12 @@ def check_answers(user_input:list, answers:list) -> list:
             correct_answers_idx.append(i)
     return correct_answers_idx
 
+def get_links(words):
+    links = []
+    for word in words:
+        url = 'https://www.wordreference.com/fren/' + word
+        links.append(url)
+    return links
 
 
 app = Flask(__name__)
@@ -50,12 +58,22 @@ def index(**kwargs):
 def test(**kwargs):
   
     if request.method=='POST': 
+        checkbox_bool = request.form.get('checkbox_bool')
+        
         df = pd.read_excel(VOCAB_FILE, sheet_name=session['sheet_name'])
         df.dropna(subset=['word', 'le ou la'], inplace=True)
 
         articles = df.loc[:, 'le ou la'].values
         words = df.loc[:, 'word'].values
         user_input = []
+        samples = None
+        links = None
+
+        if checkbox_bool: 
+            df.loc[:, 'sample'].fillna('', inplace=True)
+            links = get_links(words)
+            samples = df.loc[:, 'sample'].values
+        
         for i in range(len(articles)):
             user_input.append(request.form.get(f"#{i}"))
 
@@ -64,11 +82,11 @@ def test(**kwargs):
         if len(correct_answers_idx) == len(articles):
             return "Congrads! You got them all right!"
         else: 
-            
             return render_template('test.html', sheet_name=session['sheet_name'], words=words,
-        enumerate=enumerate, len=len, range=range,
-         user_input=user_input, articles=articles,
-        correct_answers_idx=correct_answers_idx, mode='check')
+                checkbox_bool=checkbox_bool, samples=samples, links=links,
+                enumerate=enumerate, len=len, range=range,
+                user_input=user_input, articles=articles,
+                correct_answers_idx=correct_answers_idx, mode='check')
 
 
     else: 
