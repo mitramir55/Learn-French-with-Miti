@@ -6,3 +6,4 @@ pandas
 CherryPy
 Werkzeug
 regex
+openpyxl
