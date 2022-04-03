@@ -6,4 +6,3 @@ pandas
 CherryPy
 Werkzeug
 regex
-bs4

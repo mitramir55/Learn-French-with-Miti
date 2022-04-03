@@ -1,18 +1,7 @@
-#from crypt import methods
-from cgitb import html
 import re
-from cherrypy import url
 from flask import Flask, flash, redirect, url_for, render_template, request, session
-from graphviz import render
 import numpy as np
 import pandas as pd
-import os, io, csv, sys, pickle, time
-from charset_normalizer import from_path
-from itertools import chain
-from prompt_toolkit import HTML 
-from werkzeug.utils import secure_filename
-from bs4 import BeautifulSoup
-import requests
 
 
 
@@ -90,7 +79,7 @@ def test(**kwargs):
                     enumerate=enumerate, len=len, range=range,
                     correct_answers_idx=correct_answers_idx,
                     mode='check')
-                    
+
         elif request.form['replay']:
             return redirect(url_for('test'))
 
