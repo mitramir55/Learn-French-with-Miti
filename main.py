@@ -58,36 +58,41 @@ def index(**kwargs):
 def test(**kwargs):
   
     if request.method=='POST': 
-        checkbox_bool = request.form.get('checkbox_bool')
-        
-        df = pd.read_excel(VOCAB_FILE, sheet_name=session['sheet_name'])
-        df.dropna(subset=['word', 'le ou la'], inplace=True)
+        if request.form['submit']:
+            checkbox_bool = request.form.get('checkbox_bool')
+            
+            df = pd.read_excel(VOCAB_FILE, sheet_name=session['sheet_name'])
+            df.dropna(subset=['word', 'le ou la'], inplace=True)
 
-        articles = df.loc[:, 'le ou la'].values
-        words = df.loc[:, 'word'].values
-        user_input = []
-        samples = None
-        links = None
+            articles = df.loc[:, 'le ou la'].values
+            words = df.loc[:, 'word'].values
+            user_input = []
+            samples = None
+            links = None
+            confetti_bool= None
 
-        if checkbox_bool: 
-            df.loc[:, 'sample'].fillna('', inplace=True)
-            links = get_links(words)
-            samples = df.loc[:, 'sample'].values
-        
-        for i in range(len(articles)):
-            user_input.append(request.form.get(f"#{i}"))
+            if checkbox_bool: 
+                df.loc[:, 'sample'].fillna('', inplace=True)
+                links = get_links(words)
+                samples = df.loc[:, 'sample'].values
+            
+            for i in range(len(articles)):
+                user_input.append(request.form.get(f"#{i}"))
 
-        correct_answers_idx = check_answers(user_input, articles)
+            correct_answers_idx = check_answers(user_input, articles)
 
-        if len(correct_answers_idx) == len(articles):
-            return "Congrads! You got them all right!"
-        else: 
+            if len(correct_answers_idx) == len(articles):
+                confetti_bool = True
+
             return render_template('test.html', sheet_name=session['sheet_name'], words=words,
-                checkbox_bool=checkbox_bool, samples=samples, links=links,
-                enumerate=enumerate, len=len, range=range,
-                user_input=user_input, articles=articles,
-                correct_answers_idx=correct_answers_idx, mode='check')
-
+                    checkbox_bool=checkbox_bool, confetti_bool=confetti_bool, 
+                    samples=samples, links=links, user_input=user_input, articles=articles, 
+                    enumerate=enumerate, len=len, range=range,
+                    correct_answers_idx=correct_answers_idx,
+                    mode='check')
+                    
+        elif request.form['replay']:
+            return redirect(url_for('test'))
 
     else: 
         df = pd.read_excel(VOCAB_FILE, sheet_name=session['sheet_name'])

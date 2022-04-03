@@ -35,6 +35,24 @@
         <button type="submit" id="btn-submit" style="background-color: aliceblue;" name="submit" value="Submit"  class="btn btn-light">Submit</button>
         </form>
     {% elif mode=='check' %}
+    {% if confetti_bool %}
+        <h2>Congrads! <br> You got all right!🎇</h2>
+        <script src="static\confetti.js"></script>
+        <script>
+        const start = () => {
+                setTimeout(function() {
+                    confetti.start()
+                }, 1000); // 1000 is time that after 1 second start the confetti ( 1000 = 1 sec)
+            };
+            const stop = () => {
+                setTimeout(function() {
+                    confetti.stop()
+                }, 5000); // 5000 is time that after 5 second stop the confetti ( 5000 = 5 sec)
+            };
+            start();
+            stop();
+        </script>
+    {% endif %}
         <table class="table table-bordered table-hover">
             <thead>
             <tr>
@@ -62,10 +80,13 @@
                             <td> <a href="{{links[i]}}" target="blank_">link</a> </td>
                         {% endif %}
                     </tr>
-                    
                 {% endfor %}
             </tbody>
         </table>
+        <form action="#">
+            <a role="button" href="{{ url_for('index') }}" id="btn-submit" style="background-color: aliceblue;" name="submit" value="Submit"  class="btn btn-light"> Home </a>
+            <a role="button" href="{{ url_for('test') }}" id="btn-submit" style="background-color: aliceblue;" name="replay" value="Submit"  class="btn btn-light"> Replay </a>
+        </form>
 
     {% endif %}
 
