@@ -4,4 +4,4 @@ This is a Flask webapp I created for learning the articles (le, la, les) and fre
 
 Visit the website: [link](https://learn-french-with-miti.herokuapp.com/)
 
-![image](static\assets\preview.JPG)
+![image](https://github.com/mitramir55/Learn-French-with-Miti/blob/main/website_preview.png)
