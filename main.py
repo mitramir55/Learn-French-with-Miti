@@ -47,7 +47,7 @@ def index(**kwargs):
 def test(**kwargs):
   
     if request.method=='POST': 
-        if request.form['submit']:
+        if request.form['submit'] == 'submit':
             checkbox_bool = request.form.get('checkbox_bool')
             
             df = pd.read_excel(VOCAB_FILE, sheet_name=session['sheet_name'])
@@ -73,6 +73,8 @@ def test(**kwargs):
             if len(correct_answers_idx) == len(articles):
                 confetti_bool = True
 
+            #return f"{correct_answers_idx}"
+
             return render_template('test.html', sheet_name=session['sheet_name'], words=words,
                     checkbox_bool=checkbox_bool, confetti_bool=confetti_bool, 
                     samples=samples, links=links, user_input=user_input, articles=articles, 
@@ -80,13 +82,13 @@ def test(**kwargs):
                     correct_answers_idx=correct_answers_idx,
                     mode='check')
 
-        elif request.form['replay']:
+        elif request.form.get('reply'):
             return redirect(url_for('test'))
 
     else: 
         df = pd.read_excel(VOCAB_FILE, sheet_name=session['sheet_name'])
 
-        df.dropna(subset=['word', 'le ou la'], inplace=True)
+        df.dropna(subset=['word', 'le ou la'],  inplace=True)
         words = df.loc[:, 'word']
         return render_template('test.html', sheet_name=session['sheet_name'], words=words,
         enumerate=enumerate, mode='test')
