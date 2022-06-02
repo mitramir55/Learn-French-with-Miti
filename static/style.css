@@ -11511,3 +11511,11 @@ header.masthead .bg-circle-4 {
   bottom: 0;
   width: 100%;
 }
+
+#circular_logo {
+  width: 40%;
+   float: left;
+    padding: 2px;
+    margin: 10px;
+    shape-outside: ellipse();
+}

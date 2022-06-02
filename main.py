@@ -1,5 +1,6 @@
 
 from flask import Flask, redirect, url_for, render_template, request, session
+from graphviz import render
 import numpy as np
 import pandas as pd
 
@@ -34,8 +35,12 @@ app.config['SECRET_KEY'] = '12345'
 def index(**kwargs):
     
     if request.method=='POST':
-        session['sheet_name'] = request.form['submit']
-        return redirect(url_for('test'))
+
+        if request.form['submit'] == 'preview':
+            return render_template('preview.html')
+        else:
+            session['sheet_name'] = request.form['submit']
+            return redirect(url_for('test'))
 
     else:
         vocab_file_sheets = pd.read_excel(VOCAB_FILE, None)
@@ -47,6 +52,7 @@ def index(**kwargs):
 def test(**kwargs):
   
     if request.method=='POST': 
+
         if request.form['submit'] == 'submit':
             checkbox_bool = request.form.get('checkbox_bool')
             
